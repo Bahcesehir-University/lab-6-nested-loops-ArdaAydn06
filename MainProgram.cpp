@@ -21,6 +21,7 @@
 // ============================================================================
 
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 int main() {
@@ -44,8 +45,13 @@ int main() {
 
     // TODO: Write a for loop that counts from 5 down to 1
     //       Print each number followed by a space, then "Go!" on a new line.
-
-
+    int a = 5;
+    for(int i= 5; i>=1 ; i-- ){
+        cout << i << " " ;
+       
+    }
+     cout << endl;
+    cout << "Go!";
     cout << endl;
 
     // -----------------------------------------------------------------------
@@ -63,8 +69,11 @@ int main() {
 
     // TODO: Use a loop to calculate the sum of 1 + 2 + ... + N
     //       Store the result in a variable called 'sum' and print it.
-
-
+    int sum = 0;
+    for (int i = 1 ; i<= n ; i++){
+        sum = (i + sum);
+    }
+   cout << "Sum: " << sum << endl;
     cout << endl;
 
     // ========================================================================
@@ -109,7 +118,18 @@ int main() {
     // TODO: Create nested loops (outer: 4 iterations, inner: 5 iterations).
     //       Use a counter variable to count how many times the inner body runs.
     //       Print the total count.
-
+       int outer_loop_counter = 0 ;
+       int inner_loop_counter = 0 ;
+       int total_loop_counter = 0 ;
+       for(int row = 0 ; row < 4 ; row++){
+           outer_loop_counter++;
+           total_loop_counter++;
+           for(int col=0 ; col < 5 ; col++){
+               inner_loop_counter++;
+               total_loop_counter++;
+              break;
+           }
+       }
 
     cout << endl;
 
@@ -136,6 +156,12 @@ int main() {
     int data[] = {7, 12, 4, 9, -3, 8, -1, 6};
     int dataSize = 8;
 
+    for( int i = 0 ; i < dataSize ; i++){
+        if (data[i] < 0){
+            cout << "First negative number: " << data[i];
+            break;
+        }
+    }
     // TODO: Loop through the 'data' array.
     //       When you find the first negative number, print it and break.
 
@@ -165,7 +191,10 @@ int main() {
     // TODO: Write a loop from 1 to 20.
     //       Use 'continue' to skip multiples of 3.
     //       Print the remaining numbers on one line separated by spaces.
-
+    for (int i = 1 ; i<= 20 ; i++){
+        if (i % 3 == 0) continue;
+        cout << i << " ";
+    }
 
     cout << endl << endl;
 
@@ -196,7 +225,13 @@ int main() {
     cout << "--- Multiplication Table (1-5) ---" << endl;
 
     // TODO: Write nested loops to produce the multiplication table above.
-
+    for (int row = 1 ; row <= 5 ; row++){
+        for (int col = 1; col <=5 ; col++){
+            cout.width(4);
+            cout << row * col << " ";
+        }
+        cout<< endl;
+    }
 
     cout << endl;
 
@@ -221,10 +256,14 @@ int main() {
     // TODO: Use nested loops to print the right triangle pattern.
     //       Outer loop: controls the row (1 to height)
     //       Inner loop: prints '*' characters for that row
-
+    for (int i = 1 ; i <= height ; i++){
+        
+        for (int j = 1; j <=i ; j++){
+            cout << "*";
+     }
 
     cout << endl;
-
+}
     // -----------------------------------------------------------------------
     // Exercise 3.3: Number Triangle with Row Sum
     //   Print the following pattern for N rows (ask user for N, 1-7):
@@ -239,7 +278,7 @@ int main() {
     //   Each row prints numbers from 1 up to the row number,
     //   then prints the sum of that row at the end.
     // -----------------------------------------------------------------------
-
+ 
     cout << "--- Number Triangle with Row Sum ---" << endl;
     int rows;
     cout << "Enter number of rows (1-7): ";
@@ -251,7 +290,14 @@ int main() {
     //         - Print each number
     //         - Accumulate the sum for that row
     //       After inner loop: print "-> Sum = " and the row's sum
-
+    for (int i = 1 ; i <= height ; i++){
+        int sum = 0;
+        for (int j = 1; j <=i ; j++){
+            cout << j<< " ";
+            sum += j;
+        }
+        cout<< setw(20)<< "-> Sum = " << sum << endl;
+    }
 
     cout << endl;
 
@@ -307,14 +353,23 @@ int main() {
     cout << "--- Filtered Average ---" << endl;
 
     int scores[] = {85, 42, 91, 37, 78, 65, 29, 88, 95, 44};
-    int scoresSize = 10;
+    int scoreSize = 10;
 
     // TODO: Loop through the 'scores' array.
     //       Use 'continue' to skip any score below 50.
     //       Accumulate the sum and count of valid scores.
     //       Print the average of valid scores (use double for precision).
-
-
+    float avg = 0;
+    int valid_counter = 0;
+    for (int i = 0 ; i<= scoreSize ; i++){
+        if (scores[i] <50){
+            continue;
+        }
+        avg += scores[i];
+        valid_counter++;
+    }
+    cout << "average of valid scores :" << avg / valid_counter << endl;
+    
     cout << endl;
 
     // -----------------------------------------------------------------------
@@ -358,11 +413,11 @@ int main() {
     //   Print a diamond shape made of stars.
     //
     //   Example for N = 5:
-    //       *
+    //       *                   
     //      ***
     //     *****
     //      ***
-    //       *
+    //       *         
     //
     //   Hint:
     //     - The diamond has N rows total.
